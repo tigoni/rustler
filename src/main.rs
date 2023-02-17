@@ -28,6 +28,22 @@ fn main() {
 
     //accessing
     let first = a[2]; //5
-    
+   
+    //functions
+    test_function(2425, 'H');
+    let value = func_with_ret();
+    println!("Value returned from func: {value}");
 
 }
+
+    fn test_function(x: i32, label: char) {
+        println!("This is a test function with params {x} and {label}");
+        let y = 5; //statement 
+        // y * x //expression (no ending semicolons, adding one tunrs it into a statement and so no return value)
+        println!("No return func called!")
+    }
+
+    fn func_with_ret() -> i32 {
+        3 * 5
+    }
+ 
