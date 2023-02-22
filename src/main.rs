@@ -1,38 +1,29 @@
 
 
-use reader::reader::{simple_file_opener, file_opener_with_recover, using_unwrap_for_errors, using_expect_for_errors, read_username_from_file, read_username_from_file_shorted};
-use std::io::{Read};
 
-pub mod reader;
+use crate::structures::testStruct::User;
 
+mod structures;
 fn main() {
 
-    //unrecoverable errors - calling panic  
-    let vector = vec![2,6,8];
-    // vector[4];
-    // simple_file_opener();
-
-    // file_opener_with_recover();
-
-    // using_unwrap_for_errors();
-
-    // using_expect_for_errors();
-    // file_read_with_error_handling();
-
-    let res = read_username_from_file_shorted();
-    println!("Result: {:?}", res);
-
-}
-
-fn file_read_with_error_handling() {
-
-    let mut username = String::new();
-
-    let result= read_username_from_file();
-    let contents = match result.unwrap().read_to_string(&mut username) {
-        Ok(_) => Ok(username),
-        Err(e) => Err(e),
+//create instance 
+let mut user = User{
+    active: true,
+    username: String::from("goldenPlay"),
+    email:String::from("gold.play@gd.ke")
     };
+
+    user.email = String::from("another.emai.co");
+    //a builder function to update the field
+    fn build_user(email: String, username: String) -> User {
+        User {
+            active: true,
+            username: username,
+            email: email,
+        }
+    }
+    println!("Email is: {:?}", build_user(String::from("someemail.com"), String::from("anotherusername")));
+
 }
 
 
