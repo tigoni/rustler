@@ -1,58 +1,38 @@
 
-use core::panic;
-use std::fs::File;
-use std::io::{ErrorKind, Read};
+
+use reader::reader::{simple_file_opener, file_opener_with_recover, using_unwrap_for_errors, using_expect_for_errors, read_username_from_file, read_username_from_file_shorted};
+use std::io::{Read};
+
+pub mod reader;
 
 fn main() {
 
-    //rust will call panic afeter we attempt to access an index beyond the vector size
+    //unrecoverable errors - calling panic  
     let vector = vec![2,6,8];
-    // vector[93];
+    // vector[4];
+    // simple_file_opener();
 
-    //recoverable errors: The generic Result<T, E> is used.
-    let result  = File::open("hello.txt");
-    let file = match result {
-       Ok(file) => file,
-       Err(error) => match error.kind() {
-            ErrorKind::NotFound => match File::create("hello.txt"){
-                Ok(fc) => fc,
-                Err(e) => panic!("Problem creating file: {:?}", e),
-            },
-            other_error => {
-                panic!("Problem opening file: {:?}",other_error);
-            }
-       } 
-    };
+    // file_opener_with_recover();
 
-    //shortcuts for panic: unwrap and expect (both call panic if Ok is not returned)
-    // let another_file = File::open("file1").unwrap();
-    
-    let yet_another_file = File::open("file2").expect("file 2 should be in this dir");
+    // using_unwrap_for_errors();
 
-    //propagating errors
+    // using_expect_for_errors();
+    // file_read_with_error_handling();
+
+    let res = read_username_from_file_shorted();
+    println!("Result: {:?}", res);
 
 }
 
-fn read_username_from_file() -> Result<String, io::Error> {
-    let username_file_result = File::open("hello");
-
-    let mut username_file = match username_file_result {
-        Ok(file) => file,
-        Err(error) => return Err(error),
-    };
+fn file_read_with_error_handling() {
 
     let mut username = String::new();
 
-    match username_file.read_to_string(&mut username){
+    let result= read_username_from_file();
+    let contents = match result.unwrap().read_to_string(&mut username) {
         Ok(_) => Ok(username),
         Err(e) => Err(e),
-    }
+    };
 }
 
-//Using the ? operator to propagate errors
-fn read_again_from_file() -> Result<String, io::Error> {
-    let mut username_file = file::open("")?; //? works almost inthe smae wayas the match expression
-    let mut username = String::new();
-    username_file.read_to_string(&mut username)?;
-    Ok(username);
-}
+
