@@ -32,9 +32,6 @@ pub mod functions {
         let result = comparator(23, 78);
         println!("Result of comparator: {result}");
         simple_check();
-        // rep_with_loop();
-        while_loop();
-        loop_for_me();
     }
 
     fn func_without_ret(x: i32, label: char) {
@@ -67,7 +64,7 @@ pub mod functions {
     }
 
     //repetition
-    pub fn rep_with_loop() {
+    fn repeat_loop() {
         //Loop keyword is used to create an infinite loop
         //The break keyword is used to break out of a loop
         //The continue keyword is used to skip the rest of the loop and start the next iteration.
@@ -97,7 +94,7 @@ pub mod functions {
         println!("Result is: {output}");
     }
 
-    fn while_loop() {
+    fn repeat_while() {
         let mut number = 10;
         while number != 200 {
             print!("{number}, ");
@@ -108,7 +105,7 @@ pub mod functions {
     }
 
     //using for
-    fn loop_for_me() {
+    fn repeat_for() {
         for num in (1..23).rev() {
             print!("-{num}")
         }
