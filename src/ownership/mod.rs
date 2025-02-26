@@ -60,13 +60,36 @@ pub mod referenced {
     // References are immutable by default. This means that the value they point to cannot be changed.
 
     // References are created using the & symbol. The value of the reference is the memory address of the value it points to.
+    //the action of creating a reference is called borrowing.
     fn calculate_length(s: &String) -> usize {
         s.len()
+    }
+
+    //trying to change a value that is borrowed will cause an error
+    fn try_to_change(s: &String) {
+        //This will cause an error because references are immutable by default
+        //s.push_str("world");
+    }
+
+    //mutable references
+    //To allow a reference to be mutable, the reference must be declared as mutable using the &mut keyword.
+    fn try_to_change_mutable(s: &mut String) {
+        s.push_str("world");
     }
 
     pub fn test_references() {
         let s1 = String::from("hello");
         let len = calculate_length(&s1); //passing a reference to s1
         println!("The length of '{}' is {}", s1, len); //s1 is still valid
+        try_to_change(&s1); //passing a reference to s1
+
+        let mut s2 = String::from("Habari zenu ");
+        try_to_change_mutable(&mut s2); //passing a mutable reference to s1
+        println!("The value of s2 is {}", s2);
     }
+}
+
+//Slices
+mod slices {
+    
 }
