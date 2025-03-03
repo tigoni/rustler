@@ -90,6 +90,39 @@ pub mod referenced {
 }
 
 //Slices
-mod slices {
+//slices are references to a sequence of elements in a collection. They do not have ownership.
+//They are useful when we want to reference a part of a collection without taking ownership of the whole collection.
+
+pub mod slices {
+    pub fn test_slices() {
+        let s = String::from("hello world");
+        let hello = &s[0..5]; //slices from index 0 to 5
+        let world = &s[6..11]; //slices from index 6 to 11
+        println!("slice is {}", hello);
+        println!("slice is {}", world);
+
+        //slices can also be created using the .. operator
+        let hello = &s[..5]; //slices from index 0 to 5
+        let world = &s[6..]; //slices from index 6 to the end
+        println!("slice is {}", hello);
+        println!("slice is {}", world);
+    }
+
+    //The function takes a reference to a string and returns a slice of the string
+    //The slice is a reference to the first word in the string. It checks for the first space in the string
+    //and returns a slice of the string from the beginning to the space. It converts the string to a byte array and iterates over the bytes to find the space.
+    //It returns a slice of the string from the beginning to the space.
+    pub fn first_word(s: &String) -> &str {
+        let bytes = s.as_bytes();
+    
+        for (i, &item) in bytes.iter().enumerate() {
+            if item == b' ' {
+                return &s[0..i];
+            }
+        }
+    
+        &s[..]
+    }
+    
     
 }
