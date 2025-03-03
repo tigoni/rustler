@@ -52,5 +52,20 @@ pub mod structs {
         //user1 no longer available fully since its string values have been moved 
         //to user3
         // println!("User1 email is {}", user1.email);
+
+        //using tuple structs. Tuple structs have the added meaning the struct name provides but don’t have names associated with their fields; rather, they just have the types of the fields.
+        //They are similatr to turples and ca be desrutctured and the '.' operator can be used to access the fields
+        struct Color(i32, i32, i32);
+        let black = Color(0, 0, 0);
+        println!("The color is {} {} {}", black.0, black.1, black.2);
+        //destructuring
+        let Color(r, g, b) = black;
+        println!("The color is {} {} {}", r, g, b);
+
+        //unit-like structs
+        //These are structs that don't have any fields
+        //They are useful when you want to implement a trait on a type but don't have any data to store in the type itself.
+        struct UnitLikeStruct;
+        let u = UnitLikeStruct;
     }
 }
