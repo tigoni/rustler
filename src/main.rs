@@ -7,6 +7,8 @@ use crate::ownership::referenced::test_references;
 use crate::ownership::slices::test_slices;
 use crate::ownership::slices::first_word;
 use crate::structs::structs::test_structs;
+use crate::structs::rectangle::Rectangle;  
+
 mod basics;
 mod control;
 mod ownership;
@@ -22,5 +24,23 @@ fn main() {
 // let s = String::from("hello world");
 // let word = first_word(&s);
 // println!("The first word is {}", word);
-test_structs();
+// test_structs();
+let rect = Rectangle {
+    width: 30,
+    height: 50, 
+};
+
+//area function
+fn area(rectangle: &Rectangle) -> u32 {
+    rectangle.width * rectangle.height
+}
+
+println!("The area of the rectangle is {}", area(&rect));
+
+println!("Rectangle is {:?}", rect);
+
+dbg!(&rect); //using debug macro as alternative to println! macro
+
+//using a method, we can define a method on a struct
+println!("The area of the rectangle is {}", rect.area());
 }

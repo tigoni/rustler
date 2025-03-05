@@ -49,7 +49,7 @@ pub mod structs {
             ..user1 //this is a struct update syntax
         };
 
-        //user1 no longer available fully since its string values have been moved 
+        //user1 no longer available fully since its string values have been moved
         //to user3
         // println!("User1 email is {}", user1.email);
 
@@ -67,5 +67,28 @@ pub mod structs {
         //They are useful when you want to implement a trait on a type but don't have any data to store in the type itself.
         struct UnitLikeStruct;
         let u = UnitLikeStruct;
+    }
+}
+
+pub mod rectangle {
+    #[derive(Debug)]
+    pub struct Rectangle {
+        pub(crate) width: u32,
+        pub(crate) height: u32,
+    }
+
+    //methods are defined within the context of a struct using the impl keyword
+    //Everything in this block of code will be associated with the Rectangle struct./type
+    impl Rectangle {
+        //methods can take ownership of self, borrow self immutably as we’ve done here, or borrow self mutably, just as they can any other parameter.
+        pub fn area(&self) -> u32 {
+            self.width * self.height
+        }
+
+        //methods can also take another parameter
+        //here the method takes another Rectangle instance and returns a boolean value if the current instance can hold the other instance (if the width and height of the current instance are greater than the width and height of the other instance)
+        pub fn can_hold(&self, other: &Rectangle) -> bool {
+            self.width > other.width && self.height > other.height
+        }
     }
 }
