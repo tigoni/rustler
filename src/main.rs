@@ -2,9 +2,7 @@
 //this is a shortcut to avoid repetition of the long path
 use crate::basics::variables::test_variables;
 use crate::control::functions::test_functions;
-use crate::enums::begin_enums::{
-    test_enum_with_data, test_enum_with_methods, test_enums, test_option_enum,
-};
+use crate::enums::begin_enums::test_enums_all;
 use crate::ownership::ownership::test_ownership;
 use crate::ownership::referenced::test_references;
 use crate::ownership::slices::first_word;
@@ -47,9 +45,5 @@ fn main() {
 
     //using a method, we can define a method on a struct
     println!("The area of the rectangle is {}", rect.area());
-
-    test_enums();
-    test_enum_with_data();
-    test_enum_with_methods();
-    test_option_enum();
+    test_enums_all();
 }
