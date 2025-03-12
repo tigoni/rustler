@@ -134,6 +134,46 @@ pub mod begin_enums {
         fn reroll() {}
     }
 
+    //using if let
+    //The if let control is a shorthand for a match control that only handles one pattern
+    //It is used when only one pattern needs to be handled
+    //It is more concise than a match control
+    
+    //example:
+    // let config_max = Some(3u8);
+    // match config_max {
+        // Some(3) => println!("three"),
+        // _ => (),
+    // }
+
+    //since we only care about the Some(3) pattern, we can use if let to make the code more concise
+    // let config_max = Some(3u8);
+    // if let Some(3) = config_max {
+        // println!("three");
+    // }
+
+    //Else if let
+    //The if let control can be used with an else if let control to handle multiple patterns. if let is used to handle the first pattern, and else if let is used to handle the second pattern.
+    //It is more concise than a match control when only a few patterns need to be handled.
+    //Example:
+    // let config_max = Some(3u8);
+    // match config_max {
+        // Some(3) => println!("three"),
+        // Some(7) => println!("seven"),
+        // _ => (),
+    // }    
+    //since we only care about the Some(3) and Some(7) patterns, we can use if let and else if let to make the code more concise
+    // let config_max = Some(3u8);
+    // if let Some(3) = config_max {
+        // println!("three");
+    // } else if let Some(7) = config_max {
+        // println!("seven");
+    // }
+
+    //Let-Else
+    //Let else takes a pattern on the right and an expression on the left. If the patern matches the value from the pattern is bound 
+
+
     //a function that tests all the functions in this module
     pub fn test_enums_all() {
         test_enums();
