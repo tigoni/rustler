@@ -9,12 +9,35 @@ use crate::ownership::slices::first_word;
 use crate::ownership::slices::test_slices;
 use crate::structs::rectangle::Rectangle;
 use crate::structs::structs::test_structs;
+use crate::garden::vegetables::grow_vegetables;
 
 mod basics;
 mod control;
 mod enums;
 mod ownership;
 mod structs;
+
+mod garden {
+    pub mod vegetables {
+
+        pub struct Cabbage {
+            pub variety: String,
+            pub size: u32,
+        }
+
+        type Asparagus = String;
+        pub fn grow_vegetables() {
+            //this function is public to the garden module
+            println!("Growing vegetables");
+            //grow some asparagus
+            let asparagus: Asparagus = String::from("Asparagus");
+            println!("Growing {}", asparagus);
+        }
+    }
+    pub fn grow_things() {
+        //this function is private to the garden module
+    }
+}
 
 fn main() {
     //  test_variables();
@@ -27,6 +50,7 @@ fn main() {
     // let word = first_word(&s);
     // println!("The first word is {}", word);
     // test_structs();
+    grow_vegetables();
     let rect = Rectangle {
         width: 30,
         height: 50,
